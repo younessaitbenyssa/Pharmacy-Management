@@ -7,11 +7,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import BD.DBConnection;
+
 public class Login implements FocusListener, ActionListener {
     JPanel login;
     JTextField tuser, tpassword;
     JLabel titre;
     private Controller controller;
+
+    private static int id = -1;
 
     public Login(Controller controller, JFrame frame) {
         this.controller = controller;
@@ -41,7 +49,7 @@ public class Login implements FocusListener, ActionListener {
         Blogin.setBounds(150, 290, 300, 50);
         Blogin.setBackground(new Color(24, 119, 242));
         Blogin.setForeground(Color.WHITE);
-        Blogin.addActionListener(e -> showLoginScreen(frame));
+        Blogin.addActionListener(e -> Auth(frame));
         login.add(Blogin);
 
         JButton Bmt = new JButton("Mot de passe oublié ?");
@@ -76,6 +84,14 @@ public class Login implements FocusListener, ActionListener {
         }
     }
 
+    public static int getid() {
+        return id;
+    }
+
+    public static void setId(int newId) {
+        id = newId;
+    }
+
     @Override
     public void focusLost(FocusEvent e) {
         Object f = e.getSource();
@@ -104,5 +120,38 @@ public class Login implements FocusListener, ActionListener {
         frame.revalidate();
         frame.repaint();
 
+    }
+
+    private void Auth(JFrame frame) {
+        String emailOrPhone = tuser.getText().trim();
+        String password = new String(tpassword.getText().trim());
+
+        if (emailOrPhone.equals("      email ou Telephone") || password.equals("      mot de passe") || emailOrPhone.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs !");
+            return;
+        }
+
+        try (Connection conn = DBConnection.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement("SELECT password,id FROM users WHERE (email = ? OR phone = ?)");
+            stmt.setString(1, emailOrPhone);
+            stmt.setString(2, emailOrPhone);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                String BPassword = resultSet.getString("password");
+                if (BPassword.equals(password)) {
+                    id = resultSet.getInt("id");
+                    showLoginScreen(frame);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mot de passe incorrect !");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Aucun compte trouvé avec ces identifiants !");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur de connexion à la base de données !");
+        }
     }
 }

@@ -2,7 +2,6 @@ package org.example;
 
 
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
 import javax.swing.*;
 
 
@@ -27,20 +26,20 @@ public class SideBar {
         sideBarPanel.setBackground(new Color(0, 128, 128));
         sideBarPanel.setBounds(0, 0, 250, 630);
 
-        //icons
-        icon1 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\home.png");
-        icon2 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\add.png");
-        icon3 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\chatbot-icon.png");
-        icon4 = new ImageIcon("C:\\Users\\dell\\Desktop\\icons\\reports.png");
-        icon5 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\pharmacyimagewhite.png");
-        icon6 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\dashboard.png");
-        icon7 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\sales.png");
-        icon8 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\logout.png");
-        icon9 = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\settings.png");
+
+        icon1 = new ImageIcon("src\\main\\java\\assets\\images\\home.png");
+        icon2 = new ImageIcon("src\\main\\java\\assets\\images\\add.png");
+        icon3 = new ImageIcon("src\\main\\java\\assets\\images\\chatbot-icon.png");
+        icon4 = new ImageIcon("src\\main\\java\\assets\\images\\reports.png");
+        icon5 = new ImageIcon("src\\main\\java\\assets\\images\\pharmacyimagewhite.png");
+        icon6 = new ImageIcon("src\\main\\java\\assets\\images\\dashboard.png");
+        icon7 = new ImageIcon("src\\main\\java\\assets\\images\\sales.png");
+        icon8 = new ImageIcon("src\\main\\java\\assets\\images\\logout.png");
+        icon9 = new ImageIcon("src\\main\\java\\assets\\images\\settings.png");
 
 
 
-        // Resize icons
+
         icon1 = resizeIcon(icon1, 28, 28);
         icon2 = resizeIcon(icon2, 28, 28);
         icon3 = resizeIcon(icon3, 28, 28);
@@ -52,13 +51,13 @@ public class SideBar {
         icon5 = resizeIcon(icon5, 150, 150);
 
 
-        // Profile label
+
         profileLab = new JLabel();
         profileLab.setBounds(50, 30, 150, 150);
         Image scaledImage1 = icon5.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
         profileLab.setIcon(new ImageIcon(scaledImage1));
 
-        // Content panel
+
         contentPanel = new JPanel();
         contentPanel.setBounds(250, 0, 950, 630);
         contentPanel.setLayout(new CardLayout());
@@ -69,14 +68,16 @@ public class SideBar {
 
         VenteMedicament salesPanel = new VenteMedicament();
 
+        Setting Setting=new Setting();
+        RapportsVente Rapports=new RapportsVente();
 
-        // Add different panels for each section
-        //JPanel expensePanel = createContentPanel("Expense Panel");
+
         JPanel homePanel = home.getHomePanel();
         JPanel addMedecine = addMed.getPanel();
         JPanel chatPanel = chat.getChatPanel();
         JPanel SalePanel = salesPanel.getPanel();
-        JPanel reportsPanel = createContentPanel("Reports Panel");
+        JPanel reportsPanel = Rapports.getRapportsPanel();
+        JPanel SettingsPanel = Setting.getPanel();
 
 
         contentPanel.add(homePanel, "Home");
@@ -84,8 +85,9 @@ public class SideBar {
         contentPanel.add(chatPanel, "Chat");
         contentPanel.add(reportsPanel, "Reports");
         contentPanel.add(SalePanel, "Sales");
+        contentPanel.add(SettingsPanel, "Settings");
 
-        // Sidebar buttons
+
         homeButton = createSidebarButton("    Home", icon1, 200);
         AddMedecine = createSidebarButton("    AddMedecine", icon2, 250);
         chatButton = createSidebarButton("    ChatBot", icon3, 300);
@@ -102,14 +104,16 @@ public class SideBar {
         separater.setBackground(Color.WHITE);
 
 
-        // Add action listeners to buttons
+
         AddMedecine.addActionListener(e -> switchPanel("AddMedecine"));
         homeButton.addActionListener(e -> switchPanel("Home"));
         chatButton.addActionListener(e -> switchPanel("Chat"));
         reports.addActionListener(e -> switchPanel("Reports"));
         sales.addActionListener(e -> switchPanel("Sales"));
+        settingsButton.addActionListener(e -> switchPanel("Settings"));
+        logoutButton.addActionListener(e -> logout(frame));
 
-        // Add components to sidebar
+
         sideBarPanel.add(profileLab);
         sideBarPanel.add(AddMedecine);
         sideBarPanel.add(homeButton);
@@ -133,28 +137,28 @@ public class SideBar {
         button.setBounds(10, yPosition, 225, 40);
         button.setOpaque(true);
         button.setFocusable(false);
-        button.setIconTextGap(10); // Space between icon and text
+        button.setIconTextGap(10);
         button.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        // Align text and icon to the left
-        button.setHorizontalAlignment(SwingConstants.LEFT); // Align both icon and text to the left
-        button.setHorizontalTextPosition(SwingConstants.RIGHT); // Position text to the right of the icon
 
-        // Add padding
-        button.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15)); // Top, Left, Bottom, Right
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+        button.setHorizontalTextPosition(SwingConstants.RIGHT);
 
-        // Set the background color and other properties
+
+        button.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+
+
         button.setBackground(new Color(0, 128, 128));
         button.setForeground(Color.WHITE);
 
-        // Add mouse listener for hover effect
+
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(0, 150, 150)); // Highlight color
+                button.setBackground(new Color(0, 150, 150));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(new Color(0, 128, 128)); // Default background
+                button.setBackground(new Color(0, 128, 128));
             }
         });
 
@@ -187,6 +191,12 @@ public class SideBar {
     private static ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
         Image image = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(image);
+    }
+
+    private void logout(JFrame frame){
+        Login.setId(-1);
+        Controller controller = new Controller(frame);
+        controller.showLogin();
     }
 
 

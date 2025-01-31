@@ -23,7 +23,7 @@ public class Cote2 {
         partie2.setForeground(Color.WHITE);
         partie2.setFont(new Font("Serif", Font.BOLD, 45));
 
-        ImageIcon icon = new ImageIcon("C:\\Users\\dell\\Desktop\\java products\\Pharmacy\\src\\main\\java\\assets\\images\\pharmacyimagewhite.png");
+        ImageIcon icon = new ImageIcon("src\\main\\java\\assets\\images\\pharmacyimagewhite.png");
         Image image = icon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         icon = new ImageIcon(image);
         iconLabel = new JLabel(icon);
