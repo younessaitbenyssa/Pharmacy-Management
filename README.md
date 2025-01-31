@@ -36,5 +36,5 @@ A Java Swing-based desktop application for managing pharmacy operations includin
 
 ```bash
 # Clone repository
-git clone [https://github.com/yourusername/pharmacy-management.git](https://github.com/younessaitbenyssa/Pharmacy-Management.git)
+git clone https://github.com/younessaitbenyssa/Pharmacy-Management.git
 
