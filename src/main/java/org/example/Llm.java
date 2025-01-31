@@ -15,8 +15,8 @@ public class Llm {
 
     public Llm() {
 
-        this.apiUrl = "https://api.hyperbolic.xyz/v1/chat/completions";
-        this.apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaXNvZnRlbmdpbmVlcmluZ2NsdWJAZ21haWwuY29tIiwiaWF0IjoxNzM1NjM3MTAxfQ.e5IK25FLpdbe4VwpPnvv33UxpKCPNLZbUbWVqi65uAk"; // Replace with your actual API key
+        this.apiUrl = "URL";
+        this.apiKey = "API-KEY"; // Replace with your actual API key
         this.client = HttpClient.newHttpClient();
         this.conversationHistory = new ArrayList<>();
 
