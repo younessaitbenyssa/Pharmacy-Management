@@ -16,14 +16,14 @@
 
 ## 📝 Project Description
 A Java Swing-based desktop application for managing pharmacy operations including:
-- Inventory management
+- Managing sales (add, modify, delete sale)
 - Sales tracking
-- Patient records
-- Prescription management
+- generating daily, weekly or monthly reports
+- Managing medecines (add, delete, modify mededine)
 
 ## 🚀 Features
-- **Inventory Management**  
-  Track stock levels and expiration dates
+- **🤖 AI Assistant**  
+  intercation with deepseek
 - **Sales Module**  
   Process transactions with invoice generation
 - **User Authentication**  
@@ -32,11 +32,9 @@ A Java Swing-based desktop application for managing pharmacy operations includin
 ## 💻 Installation
 ### Prerequisites
 - Java 17+
-- MySQL 8.0+
+
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/pharmacy-management.git
+git clone [https://github.com/yourusername/pharmacy-management.git](https://github.com/younessaitbenyssa/Pharmacy-Management.git)
 
-# Import database
-mysql -u root -p < database/pharmacy_db.sql
