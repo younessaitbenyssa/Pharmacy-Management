@@ -60,7 +60,7 @@ The Pharmacy Management System is a Java Swing desktop application designed to s
 # Clone repository
 git clone https://github.com/younessaitbenyssa/Pharmacy-Management.git
 
-#add you URL and API KEY in Llm.java
+#add your URL and API KEY in Llm.java
 apiUrl = "URL"
 apiKey = "API-KEY"
 
