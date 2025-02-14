@@ -26,11 +26,11 @@ public class Chat {
         chatPanel.setLayout(null);
         chatPanel.setBounds(0, 0, 950, 630);
 
-        // JavaFX panel to hold chat messages
+        
         fxPanel = new JFXPanel();
         fxPanel.setBounds(50, 50, 850, 500);
 
-        // Input field and send button
+       
         chatArea = new JTextField();
         chatArea.setBounds(50, 580, 740, 40);
 
@@ -53,7 +53,7 @@ public class Chat {
             messageBox = new VBox(10);
             messageBox.setStyle("-fx-background-color: #eeeeee;");
 
-            // Wrap the VBox in a ScrollPane and store its reference
+            
             scrollPane = new ScrollPane(messageBox);
             scrollPane.setFitToWidth(true);
             scrollPane.setPannable(true);
