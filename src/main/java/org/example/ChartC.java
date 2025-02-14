@@ -72,7 +72,7 @@ public class ChartC extends JPanel {
     private CategoryDataset createDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        // Add data (one series for all bars)
+        
         dataset.addValue(10, "Ventes", "Lundi");
         dataset.addValue(15, "Ventes", "Mardi");
         dataset.addValue(20, "Ventes", "Mercredi");
