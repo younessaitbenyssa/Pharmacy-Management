@@ -90,7 +90,7 @@ public class HomePage {
         charpan.setBounds(10, 250, 350, 350);
         charpan.setVisible(true);
 
-        ChartC bar = new ChartC();  // No JFrame now, just JPanel
+        ChartC bar = new ChartC(); 
         bar.setBounds(360, 280, 600, 350);
         bar.setVisible(true);
 
